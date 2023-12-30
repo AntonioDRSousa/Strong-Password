@@ -1,0 +1,86 @@
+O algoritmo S de substituição é definido pela seguinte gramática:
+
+FUNCOES
+
+random -> seleciona aleatoriamente os elementos de uma lista, escrita explicitamente(elementos entre) ou implicitamente(referencia a nome de variavel)
+valor -> obtem o valor numerico da letra correspondente de 0 até 25
+pos -> determina a posição de um caracter na string
+dig -> retorna digito numa determinada posição
+
+
+LISTAS DE CARACTERES USADAS
+
+chars = ['!','@','#','$','%','&','*','-','_','+','=','?','|','<','>',':','.',',',';','/','\\','\"','\'','(',')','[',']','{','}','~','^']
+digitos = ['0','1','2','3','4','5','6','7','8','9']
+letras_lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+letras_upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+vogais = ['a','e','i','o','u','A','E','I','O','U']
+letras_upper_meio = ['K','L','M','N','O','P']
+
+
+CONJUNTOS ABSTRATOS PARA A GRAMATICA
+
+A -> letra
+L -> letra minuscula
+U -> letra maiuscula
+D -> digito
+C -> caracter especial ("chars")
+V -> vogais
+K -> consoantes
+_ -> qualquer caracter
+0,1,2,3,4,5,6,7,8,9 -> representam o digito correspondente na gramatica
+E -> digitos = dig(pos(E)-2)
+X -> digitos = dig(pos(E)-2)+1
+Y -> digitos = dig(pos(E)-2)-1
+M -> digitos > dig(pos(E)-2)+1
+N -> digitos < dig(pos(E)-2)-1
+O -> caracteres não incluidos nos outros conjuntos
+
+
+GRAMATICA
+
+AAA -> A random([random(chars) , random(digitos)]) A
+AAD -> A letras_lower[(valor(y)+3)mod 26] D
+AAC -> A letras_upper[(valor(y)+3) mod 26] C
+DAA -> D letras_upper[(valor(y)+13) mod 26] A
+DAD -> D letras_upper[25-valor(y)] D
+DAC -> D letras_lower[(valor(y)+13) mod 26] C
+CVA -> C '0' A
+CKA -> C '1' A
+CAD -> C letras_lower[25-valor(y)] D
+CLC -> C '0' C
+CUC -> C '1' C
+ADA -> A (y mod 2) A
+A0D -> A ')' D
+A1D -> A '!' D
+A2D -> A '@' D
+A3D -> A '#' D
+A4D -> A '$' D
+A5D -> A '%' D
+A6D -> A '^' D
+A7D -> A '&' D
+A8D -> A '*' D
+A9D -> A '(' D
+ADC -> A |9-y| C
+DDA -> D random(chars) A
+DDE -> D '=' E
+DDX -> D '+' E
+DDY -> D '-' E
+DDM -> D '>' E
+DDN -> D '<' E
+DDC -> C letras_upper[25-y] C
+CDA -> C random([((y+1) mod 10) , ((y-1) mod 10)]) A
+CDD -> C letras_upper[y] D
+CDC -> C letras_upper_meio[r] C
+ACA -> D '.' A
+ACD -> D ',' D
+ACC -> D ';' C          
+DCA -> D '?' A           
+DCD -> D ':' D          
+DCC -> D '!' C           
+CCA -> C 'C' A           
+CCD -> C 'S' D 
+CCC -> C 'K' C           
+_O_ -> _ '$' _
+O__ -> 0 '$' _
+__O -> _ '$' 0

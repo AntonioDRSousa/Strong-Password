@@ -1,0 +1,12 @@
+3 modos de usar o algoritmo:
+
+1 - python3 script.py
+    Neste caso o código direciona para um programa com uma entrada como senha original e uma saída com a senha fortificada
+
+2 - python3 script.py <arquivo txt>
+    Neste caso o algoritmo lê o arquivo linha por linha e guarda cada uma das linhas num vetor, assumindo cada elemento do vetor como uma senha, e realiza a cada um desses elementos a fortificação de senha. Depois guarda todas as senhas fortificadas em um arquivo de nome "output.txt"
+
+3 - python3 script.py <palavra 1> <palavra 2> <...> <palavra n>
+    Neste caso cada <palavra i> é fortificada, ou seja, a entrada seria um vetor [ <palavra 1> , ... , <palavra n> ] e a saída será [ <palavra 1 fortificada> , ... , <palavra n fortificada> ]
+
+Foi utilizado em testes o arquivo "words.txt", que possui 370.105 palavras em inglês. O arquivo "rockyou.txt" foi testado, mas apresentou problemas na sua leitura não sendo possível obter uma saída.
